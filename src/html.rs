@@ -9,11 +9,16 @@ use std::path::Path;
 use html5ever::driver::ParseOpts;
 use html5ever::rcdom::RcDom;
 
+#[cfg(feature = "serde")]
+#[macro_use]
+extern crate serde;
+
 use crate::opengraph::Opengraph;
 use crate::parser::Parser;
 use crate::schema_org::SchemaOrg;
 
 #[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct HTML {
     /// \<title\>
     pub title: Option<String>,

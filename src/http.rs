@@ -4,7 +4,12 @@ use curl::easy::Easy;
 use std::io;
 use std::time::Duration;
 
+#[cfg(feature = "serde")]
+#[macro_use]
+extern crate serde;
+
 #[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct HTTP {
     /// The external ip address (v4 or v6)
     pub ip: String,
